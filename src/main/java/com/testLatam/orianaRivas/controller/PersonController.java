@@ -35,7 +35,7 @@ public class PersonController {
      * @return personResponse PersonResponse
      */
     @RequestMapping(value ="/{name}/{date}" ,method = RequestMethod.GET)
-    public ResponseEntity<Object> getBirthday2(@PathVariable String name,
+    public ResponseEntity<Object> getBirthday(@PathVariable String name,
                                                @PathVariable String date){
         ResponseEntity<Object> rs = null;
         try{
