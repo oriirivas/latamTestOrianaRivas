@@ -19,9 +19,9 @@ import java.util.Calendar;
 public class PersonImp implements IPersonService<PersonResponse, Person> {
 
     /**
-     * Use splitpName(), calculateBirthday() and getPoem() method
+     * Use splitName(), calculateBirthday() and getPoem() method
      * to get information need it to response a PersonResponse model
-     * Usa los metodos splitpName(), calculateBirthday() y getPoem() para retornar un
+     * Usa los metodos splitName(), calculateBirthday() y getPoem() para retornar un
      * elemento del tipo PersonResponse
      * @param person Person
      * @return personResponse PersonResponse
@@ -29,7 +29,7 @@ public class PersonImp implements IPersonService<PersonResponse, Person> {
      */
     @Override
     public PersonResponse birthdayInfo(Person person) throws ParseException {
-        String name = this.splitpName(person.getName());
+        String name = this.splitName(person.getName());
         PersonResponse personResponse = new PersonResponse();
         int age = this.calculateBirthday(person.getBirthdayDate(),1);
         int monthsForBirthDay = this.calculateBirthday(person.getBirthdayDate(),2);
@@ -53,8 +53,8 @@ public class PersonImp implements IPersonService<PersonResponse, Person> {
      * @param name String with all name
      * @return string with just the first name and last name
      */
-    private String splitpName(String name){
-        if(name == null || name ==" "){
+    public String splitName(String name){
+        if(name == null || name ==""){
             return "Sin Nombre";
         }
         String[] parts = name.split(" ");
@@ -82,7 +82,7 @@ public class PersonImp implements IPersonService<PersonResponse, Person> {
      *         if i is equals to 3 return the days of the month until the next birthday
      * @throws ParseException
      */
-    private int calculateBirthday (String date, int i) throws ParseException {
+    public int calculateBirthday(String date, int i) throws ParseException {
         Calendar today = Calendar.getInstance();
         Calendar birthdayDate = Calendar.getInstance();
         LocalDate now = LocalDate.now();
@@ -116,12 +116,12 @@ public class PersonImp implements IPersonService<PersonResponse, Person> {
      * calculada.
      * @return Sting with a random poem
      */
-    private String getPoem() {
+    public String getPoem() {
         PersonController pc = new PersonController();
-        Poems[]  polist = pc.getPoems();
-        int i = polist.length;
+        Poems[]  poemslist = pc.getPoems();
+        int i = poemslist.length;
         double poem = Math.floor(Math.random()*i);
-        return polist[(int) poem].getContent();
+        return poemslist[(int) poem].getContent();
     }
 
 }

@@ -39,10 +39,12 @@ public class PersonController {
                                                @PathVariable String date){
         ResponseEntity<Object> rs = null;
         try{
-            Person person = new Person();
-            person.setName(name);
-            person.setBirthdayDate(date);
-            rs = new ResponseEntity<Object>(personImp.birthdayInfo(person), HttpStatus.OK);
+            if( name != null && date != null){
+                Person person = new Person();
+                person.setName(name);
+                person.setBirthdayDate(date);
+                rs = new ResponseEntity<Object>(personImp.birthdayInfo(person), HttpStatus.OK);
+            }
         }catch(Exception exception) {
             exception.printStackTrace();
             rs = new ResponseEntity<Object>(Constant.ERROR, HttpStatus.NOT_FOUND);
